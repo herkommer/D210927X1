@@ -34,7 +34,11 @@ server.on('request', (req, res) => {
     }
 });
 
-// Have the server start listening locally to the port 8042
-server.listen(8042);
+// Adding a dynamic PORT for Heroku, locally still 8042
+const PORT = process.env.PORT || 8042;
 
-console.log('Server up and listening on port 8042');
+// Have the server start listening locally to the port 8042,
+// and with Heroku it will get a dynamic port assigned automatically
+server.listen(PORT);
+
+console.log(`Server up and listening on port ${PORT}`);
