@@ -1,0 +1,1 @@
+console.log('Exercise2: hey');

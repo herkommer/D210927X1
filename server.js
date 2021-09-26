@@ -11,13 +11,27 @@ const server = http.createServer();
 
 // Declare a function for what happens when the (incoming) request event triggers
 server.on('request', (req, res) => {
-    fs.readFile('index.html',function (err, data){
-        res.statusCode = 200;
-        res.setHeader('Content-Type', 'text/html');
-        res.setHeader('Content-Length', data.length);
-        res.write(data);
-        res.end();
-    });
+
+    console.log(req.url);
+    
+    if (req.url == '/Exercise2.js') {
+        fs.readFile('Exercise2.js',function (err, data){
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/javascript');
+            res.setHeader('Content-Length', data.length);
+            res.write(data);
+            res.end();
+        });
+    }
+    else {
+        fs.readFile('index.html',function (err, data){
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'text/html');
+            res.setHeader('Content-Length', data.length);
+            res.write(data);
+            res.end();
+        });
+    }
 });
 
 // Have the server start listening locally to the port 8042
